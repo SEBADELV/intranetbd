@@ -63,13 +63,18 @@ public class VentanaBienvenida extends Ventana{
 			//Cierra la ventana actual
 			this.dispose();
 		}
-		if(e.getSource() == this.botonRegistrarEstudiante){
-			VentanaRegistroEstudiante ventanaRegistroEstudiante= new VentanaRegistroEstudiante(universidad);
+		if(e.getSource() == this.botonRegistrarEstudiante ) {
+			VentanaRegistroEstudiante ventanaRegistroEstudiante = new VentanaRegistroEstudiante(universidad);
 			this.dispose();
-		}
+			}
+
 		if(e.getSource() == this.botonBuscarEstudiante){
 			VentanaBusquedaEstudiante ventanaBusquedaEstudiante= new VentanaBusquedaEstudiante(universidad);
 			this.dispose();
+		}
+		if(e.getSource() == this.botonSalida){
+			this.dispose();
+			System.exit(0);
 		}
 
 

@@ -32,14 +32,29 @@ public class UniversidadController {
 		}
 		return estudiante;
 	}
-	public boolean añadirEstudiante(String nombre, String apellido, String rut, String numeroMatricula){
-		Estudiante estudiante = new Estudiante(nombre,apellido,rut,numeroMatricula);
-		this.estudiantes.add(estudiante);
-		return estudiante;
-	}
-	public boolean añadirCarrera(String nombre, String Codigo, int Semestre){
-		Carrera carrera = new Carrera(nombre,Codigo,Semestre);
-		this.carreras.add(carrera);
+	public Carrera buscarCarrera(String nombre) {
+		Carrera carrera = null;
+		for(Carrera carreraAux:this.carreras){
+			if(carreraAux.getNombre().equals(nombre)){
+				carrera =carreraAux;
+				break;
+			}
+		}
 		return carrera;
 	}
+	public Estudiante añadirEstudiante(String nombre, String apellido, String rut, String numeroMatricula){
+			Estudiante estudiante = new Estudiante(nombre, apellido, rut, numeroMatricula);
+			this.estudiantes.add(estudiante);
+			return estudiante;
+	}
+
+	public boolean añadirCarrera(String nombre, String Codigo, int Semestre){
+		if (this.buscarCarrera(nombre)==null) {
+			Carrera carrera = new Carrera(nombre, Codigo, Semestre);
+			this.carreras.add(carrera);
+			return true;
+		}
+		return false;
+		}
+
 }

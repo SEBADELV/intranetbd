@@ -1,10 +1,12 @@
 package gui;
 
 import controller.UniversidadController;
-import model.Estudiante;
+import model.Carrera;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
+
 public class VentanaRegistroEstudiante extends Ventana{
     private JLabel textoEncabezado, textoRut, textoNombre, textoMatricula,textoApellido,textoCarrera;
     private JTextField campoNombre, campoRut, campoMatricula, campoApellido;
@@ -25,6 +27,7 @@ public class VentanaRegistroEstudiante extends Ventana{
         generarCampoNombre();
         generarCampoRut();
         generarCampoApellido();
+        generarListaCarrera();
     }
     private void generarEncabezado() {
         String textoCabecera = "Registro de Estudiante";
@@ -68,26 +71,20 @@ public class VentanaRegistroEstudiante extends Ventana{
         this.add(this.campoMatricula);
     }
     private void generarListaCarrera(){
-        super.generarJLabel(this.texto,"Marca vehículo:",20,100,100,20);
-        String [] arreglo = new String[]{"hola","chao"};
-        this.listaMarcaVehiculo=super.generarListaDesplegable(arreglo,120,100, 100, 20);
-        this.add(this.listaMarcaVehiculo);
+        super.generarJLabel(this.textoCarrera,"Carrera:",20,250,150,20);
+        String [] arreglo = new String[]{};
+        this.listaCarrera=super.generarListaDesplegable(universidad.getCarreras().toArray(), 200,250, 250, 20);
+        this.add(this.listaCarrera);
     }
-    private boolean registrarEstudiante(){
-        return universidad.añadirEstudiante(this.campoNombre.getText(),this.campoApellido.getText(),this.campoRut.getText(), this.campoMatricula.getText());
-    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.botonRegistrar) {
-            if(registrarEstudiante()) {
                 JOptionPane.showMessageDialog(this,"Estudiante registrado correctamente");
                 VentanaBienvenida ventanaBienvenida = new VentanaBienvenida(universidad);
                 this.dispose();
             }
-            else{
-                JOptionPane.showMessageDialog(this,"Ya existe la carrera");
-            }
 
-        }
+
         if (e.getSource() == this.botonCancelar){
             VentanaBienvenida ventanaBienvenida = new VentanaBienvenida(universidad);
             this.dispose();

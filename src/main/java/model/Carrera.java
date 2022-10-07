@@ -37,10 +37,6 @@ public class Carrera {
 
     @Override
     public String toString() {
-        return "Carrera{" +
-                "nombre='" + nombre + '\'' +
-                ", codigo='" + codigo + '\'' +
-                ", cantidadDeSemestres=" + cantidadDeSemestres +
-                '}';
+        return codigo;
     }
 }
